@@ -1,0 +1,90 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0B2434;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Karla', sans-serif;
+    padding: 20px;
+}
+
+main {
+    background-color: #F5F5F5;
+    height: 100%;
+    width: 100%;
+    border-radius: 1%;
+    min-width: 300px;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+div#root {
+    height: 100vh;
+    width: 100vh;
+    max-height: 700px;
+    max-width: 700px;
+}
+
+.dice-container {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 20px 20px 20px 20px 20px;
+    column-gap: 40px;
+    row-gap: 20px;
+}
+
+button {
+    font-family: 'Karla', sans-serif;
+    cursor: pointer;
+    border-radius: 15%;
+    border: none;
+    font-size: 1.2rem;
+    height: 40px;
+    width: 40px;
+    background-color: #FFFFFF;
+    font-weight: bold;
+    justify-self: center;
+    color: #2B283A;
+    box-shadow: 0px 1px 2px gray;
+}
+
+.die:hover{
+    background-color: lightgray;
+}
+.die:active{
+    background-color: gray;
+    box-shadow: 0px 0px 0px gray;
+}
+.dieEnabled {
+    background-color: #59E391;
+}
+.dieEnabled:hover {
+    background-color: #4abb77;
+}
+.dieEnabled:active {
+    background-color: #358455;
+}
+
+#roll {
+    background-color: #5035FF;
+    color: #FFFFFF;
+    border-radius: 7px;
+    font-size: 1rem;
+    font-weight: 550;
+    width: 5em;
+    height: 2em;
+    box-shadow: 2px 2px 3px gray;
+}
+#roll:hover {
+    background-color: #3523af
+}
+#roll:active {
+    background-color: #1e1364;
+    box-shadow: 0px 0px 0px gray;
+}
