@@ -34,8 +34,7 @@ export default function App() {
         const diceArray = [];
         for (let i=0; i<10; i++) {
             diceArray.push({
-                //value: 1+Math.floor(Math.random()*6), 
-                value: 5,
+                value: 1+Math.floor(Math.random()*6),
                 isHeld: false, 
                 id: nanoid()});
         }
