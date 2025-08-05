@@ -3,13 +3,6 @@ import { useState } from "react"
 import { useWindowSize } from 'react-use'
 import Confetti from 'react-confetti'
 import { nanoid } from "nanoid"
-    
-/**
-     * Challenge part 2:
-     * 1. Create a new `gameWon` variable.
-     * 2. If `gameWon` is true, change the button text to
-     *    "New Game" instead of "Roll"
-     */
 
 export default function App() {
     const [diceArray, setDiceArray] = useState(generateAllNewDice());
