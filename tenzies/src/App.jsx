@@ -1,11 +1,11 @@
 import Die from "../components/Die.jsx"
-import { useState } from "react"
-import { useWindowSize } from 'react-use'
+import { useState, useRef, useEffect } from "react"
 import Confetti from 'react-confetti'
 import { nanoid } from "nanoid"
 
 export default function App() {
-    const [diceArray, setDiceArray] = useState(generateAllNewDice());
+    const [diceArray, setDiceArray] = useState(() => generateAllNewDice());
+    const rollRef = useRef(null);
     const dieComponentArray = diceArray.map((die) => {
         return (
             <Die  
@@ -24,16 +24,29 @@ export default function App() {
         gameWon = true;
     }
 
+    useEffect(() => {
+        if (gameWon){
+            rollRef.current.focus();
+        }
+    }, [gameWon]);
+
     function generateAllNewDice() {
         const diceArray = [];
         for (let i=0; i<10; i++) {
             diceArray.push({
-                value: 1+Math.floor(Math.random()*6), 
+                //value: 1+Math.floor(Math.random()*6), 
+                value: 5,
                 isHeld: false, 
                 id: nanoid()});
         }
         return diceArray;
     }
+
+
+    function setNewGame() {
+        setDiceArray(prevDiceArray => generateAllNewDice())
+    }
+
 
     function reRollDice() {
         setDiceArray(prevDiceArray => prevDiceArray.map(die => {
@@ -53,12 +66,15 @@ export default function App() {
     return (
         <main>
             {gameWon && <Confetti />}
+            <div aria-live="polite" className="sr-only">
+                {gameWon && <p>Congratulations! You won! Press "New Game" to start again.</p>}
+            </div>
             <h1 className="title">Tenzies</h1>
             <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
             <div className="dice-container">
                 {dieComponentArray}
             </div>
-            <button id="roll" onClick={reRollDice}>{gameWon ? "New Game" : "Roll"}</button>
+            <button id="roll" ref={rollRef} onClick={gameWon ? setNewGame : reRollDice}>{gameWon ? "New Game" : "Roll"}</button>
         </main>
     )
 }
